@@ -46,14 +46,13 @@
 static void
 print_help (void)
 {
-	printf ("GNU MAC Changer\n"
+	printf ("GNU MAC Changer for Android\n"
 		"Usage: macchanger [options] device\n\n"
 		"  -h,  --help                   Print this help\n"
 		"  -V,  --version                Print version and exit\n"
 		"  -s,  --show                   Print the MAC address and exit\n"
 		"  -e,  --endding                Don't change the vendor bytes\n"
 		"  -a,  --another                Set random vendor MAC of the same kind\n"
-		"  -A                            Set random vendor MAC of any kind\n"
 		"  -p,  --permanent              Reset to original, permanent hardware MAC\n"
 		"  -r,  --random                 Set fully random MAC\n"
 		"  -l,  --list[=keyword]         Print known vendors\n"
@@ -66,7 +65,7 @@ print_help (void)
 static void
 print_usage (void)
 {
-	printf ("GNU MAC Changer\n"
+	printf ("GNU MAC Changer for Android\n"
 		"Usage: macchanger [options] device\n\n"
 		"Try `macchanger --help' for more options.\n");
 }
@@ -80,10 +79,11 @@ print_mac (const char *s, const mac_t *mac)
 
 	is_wireless = mc_maclist_is_wireless(mac);
 	mc_mac_into_string (mac, string);
-	printf ("%s%s%s (%s)\n", s,
+	printf ("%s%s%s\n", s,
 		string,
-		is_wireless ? " [wireless]": "",
-		CARD_NAME(mac));
+		is_wireless ? " [wireless]": ""
+        //,CARD_NAME(mac)
+        );
 }
 
 
@@ -150,9 +150,10 @@ main (int argc, char *argv[])
 	while ((val = getopt_long (argc, argv, "VasAbrephlm:", long_options, NULL)) != -1) {
 		switch (val) {
 		case 'V':
-			printf ("GNU MAC changer %s\n"
+			printf ("GNU MAC changer for Android %s\n"
 				"Written by Alvaro Lopez Ortega <alvaro@gnu.org>\n\n"
 				"Copyright (C) 2003,2013 Alvaro Lopez Ortega <alvaro@gnu.org>.\n"
+                "Ported to Android by KrisWebDev\n\n"
 				"This is free software; see the source for copying conditions.  There is NO\n"
 				"warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n",
 				VERSION);
